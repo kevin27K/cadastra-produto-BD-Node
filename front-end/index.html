@@ -11,15 +11,18 @@
 
 <body>
 	<div class="container">
+		<div class="calcular">
+			<button><a href="calcular.html">Calcular</a></button>
+		</div>
 		<h1>Cadastro de Produto</h1>
 
 		<form id="form-produto">
 			<input type="text" id="nome" name="nome" placeholder="Nome do Produto"><br>
-			<button id="sub">Cadastrar</button>
+			<button type="submit" id="sub">Cadastrar</button>
 		</form>
 
 		<h1>Produtos Cadastrados</h1>
-		<button id="att">Atualiza lista</button>
+
 
 		<ul id="lista-produtos">
 		</ul>
@@ -40,7 +43,7 @@
 		});
 
 		document.querySelector("#att").addEventListener('click', () => {
-			atualizaLista();
+			//atualizaLista();
 		})
 
 		function percorreForm(form) {
@@ -57,13 +60,12 @@
 			// Cria um objeto para armazenar os dados do formulário
 			const data = percorreForm(form);
 
-
 			const xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function () {
 				if (this.readyState == 4 && this.status == 201) {
 
 					console.log(this.responseText);
-					//atualizaLista()
+					atualizaLista()
 				}
 			};
 			xhttp.open('POST', url, true);

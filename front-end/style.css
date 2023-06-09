@@ -43,7 +43,9 @@ input[type="text"] {
 	margin-bottom: 1em;
 }
 
-button[type="submit"] {
+button[type="submit"],
+.calcular button,
+#fazendo-conta {
 	width: 100%;
 	background-color: #4CAF50;
 	color: white;
@@ -53,16 +55,58 @@ button[type="submit"] {
 	cursor: pointer;
 }
 
+#fazendo-conta {
+	width: 60%;
+	margin: 10px;
+}
+
+.calcular button {
+	background-color: rgb(255, 0, 0);
+	margin: 5px;
+}
+
+.calcular button:hover {
+	background-color: #ff3d3d;
+}
+
 button[type="submit"]:hover {
 	background-color: #3e8e41;
 }
 
-ul {
+#lista-produtos {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 70%;
+	border: 1px solid #000;
 	list-style: none;
-	margin: 0;
-	padding: 0;
+	margin: 10px;
+	padding: 5px 0px;
+	border-radius: 5px;
 }
 
 li {
-	margin-bottom: 0.5em;
+	cursor: pointer;
+	padding: 2px;
+}
+
+li:hover {
+	background-color: #b9b9b9;
+}
+
+.area-paralela {
+	display: flex;
+	width: 60%;
+	justify-content: space-around;
+	padding: 5px;
+	margin: 5px;
+}
+
+#paralela-area {
+	display: none;
+}
+
+#paralela {
+	background-color: #3e738e;
+	color: #fff;
 }
