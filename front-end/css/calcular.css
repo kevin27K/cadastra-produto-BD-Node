@@ -1,0 +1,44 @@
+.area-paralela {
+	display: flex;
+	width: 90%;
+	justify-content: space-evenly;
+	padding: 5px;
+	margin: 5px;
+}
+
+#paralela-area {
+	display: none;
+}
+
+#paralela {
+	background-color: #3e738e;
+	color: #fff;
+	border-radius: 3px;
+	border: 1px solid #a29b9b;
+	padding: 5px;
+}
+
+#qtd-paralela {
+	width: 30%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	border: 1px solid #a29b9b;
+	padding: 5px;
+}
+
+#metragem{
+	width: 30%;
+	padding: 5px;
+	border-radius: 3px;
+	border: 1px solid #a29b9b;
+}
+
+.input-label{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 60%;
+	padding: 5px;
+}
