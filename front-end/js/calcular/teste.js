@@ -1,7 +1,3 @@
-
-
-
-
 function trataNumeros(numero) {
 	const string = numero + "" //converte para String
 	//compara para saber se é separado por virgula ou ponto
@@ -26,16 +22,38 @@ function trataNumeros(numero) {
 		return { inteiro, fracao }
 
 	} else {
-		//quando é só inteiro
-		//console.log(false);
 		const inteiro = Number(string)
 		return inteiro;
 	}
 
 }
 
-const numero = trataNumeros('8922331,65')
+const comprimentoBarra = 3;
 
-//const numero = trataNumeros(666.23)
+function calculaBarra(tamanho) {
+	tamanho = Number(tamanho)
+	let qtdBarra;
+	//let inteiro = Number.isInteger(tamanho)
 
-console.log(numero);
+	if (tamanho === 0) {
+		console.log('IMPOSSIVEL FAZER A CONTA COM 0 (ZERO) METROS');
+	} else if (tamanho <= 3 && tamanho > 0) {
+		if (tamanho < 1) {
+			console.log(`Um corrimão de ${tamanho} centímetros irá usar 1 BARRA, já que cada barra tem ${comprimentoBarra} metros`);
+		}else if (tamanho === 1) {
+			console.log(`Um corrimão de 1 metro irá usar 1 BARRA, já que cada barra tem ${comprimentoBarra} metros`);
+		} else {
+			console.log(`Um corrimão de ${tamanho} metros irá usar 1 BARRA, já que cada barra tem ${comprimentoBarra} metros`);
+		}
+	} else if (tamanho % comprimentoBarra === 0) {
+		qtdBarra = tamanho / comprimentoBarra;
+		console.log(`Um corrimão de ${tamanho} metros irá usar ${qtdBarra} BARRAS, já que cada barra tem ${comprimentoBarra} metros`);
+	} else {
+		console.log('modulo diferente de 0');
+		qtdBarra = Math.ceil(tamanho / comprimentoBarra);
+		console.log(`Um corrimão de ${tamanho} metros irá usar ${qtdBarra} BARRAS, já que cada barra tem ${comprimentoBarra} metros`);
+	}
+
+}
+
+calculaBarra(1.1);
