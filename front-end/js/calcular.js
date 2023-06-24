@@ -1,8 +1,7 @@
-import { calcularBarras, calcularSobra } from './calcular/calculos.js';
+import { calculaQtdBarra, calculaSobra } from './calcular/calculos.js';
 
-const contaBarras = calcularBarras;
-const contaSobra = calcularSobra;
-//const contaParalela = calculaParalelas;
+const contaBarras = calculaQtdBarra;
+const contaSobra = calculaSobra;
 
 async function atualizaLista() {
 	try {
@@ -68,21 +67,7 @@ document.querySelector('#paralela').addEventListener('click', () => {
 document.querySelector("#fazendo-conta").addEventListener('click', () => {
 	const corrimao = document.querySelector("#metragem").value;
 	alert(`irá usar ${contaBarras(corrimao)} barras,\nE irá Sobrar ${contaSobra(corrimao)} metros`);
-
-	alert(`Paralelas serão: ${contaParalela(corrimao)}`)
+	//alert(`Paralelas serão: ${contaParalela(corrimao)}`)
 })
 
 
-/*
-//arrumar
-function calculaParalelas() {
-	//funcao
-	const corrimao = document.querySelector("#metragem").value;
-
-	const qtdParalela = document.querySelector("#qtd-paralela").value;
-
-	const barrasParalela = qtdParalela * calcularBarras(corrimao)
-
-	alert(`no total ira usar ${barrasParalela} barras contanto com as paralelas`)
-	// fim funcao
-}*/

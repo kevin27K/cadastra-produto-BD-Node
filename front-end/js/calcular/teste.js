@@ -1,3 +1,4 @@
+/* trataNumero, calculaBarra, calculaSobra
 const comprimentoBarra = 3;
 
 function trataNumeros(numero) {
@@ -94,4 +95,5 @@ console.log(calculaBarra(15.01));
 
 }
 
- */
+ 
+*/

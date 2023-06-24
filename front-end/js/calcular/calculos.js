@@ -1,52 +1,72 @@
 const comprimentoBarra = 3;
 
 export function trataNumeros(numero) {
-	numero = Number(numero)
-	let stringNumber = numero.toFixed(2)
-	const decimal = Number(stringNumber.slice(2, 4))
-	const unidade = Number(stringNumber.slice(0, 1))
-	return { unidade, decimal }
+	const string = numero + "" //converte para String
+	const strNumber = Number(string) //guarda o valor de string convertido para number
+
+	if (Number.isInteger(strNumber) === false) {
+		if (string.indexOf('.') !== -1 || string.indexOf(',') !== -1) {
+			//quando tem inteiros e frações . ou ,
+			//substitui , por .
+			let stringTemp = string.replace(',', '.')
+			//pega o o numero do indice onde está o ponto .
+			const index = stringTemp.indexOf('.')
+			//separa os inteiros
+			const inteiroTemp = stringTemp.slice(0, index);
+			//separa fração
+			const fracaoTemp = stringTemp.slice(index + 1, stringTemp.length);
+
+			const inteiro = Number(inteiroTemp);
+			const fracao = Number(fracaoTemp);
+
+			return { inteiro, fracao }
+		}
+	} else if (Number.isInteger(strNumber) === true) {
+		return strNumber;
+	}
 }
 
-export function calcularBarras(corrimao) {
-	let qtdBarra;
-	if (trataNumeros(corrimao).unidade % comprimentoBarra === 0 && trataNumeros(corrimao).decimal === 0.00) {
-		qtdBarra = corrimao / comprimentoBarra;
+export function calculaQtdBarra(tamanho) {
+	tamanho = Number(tamanho)
+	let qtdBarra = 0;
+
+	if (tamanho === 0) {
+		return console.error('IMPOSSIVEL FAZER A CONTA COM 0 (ZERO) METROS');
+	} else if (tamanho <= 3 && tamanho > 0 || tamanho === 1) {
+		return 1;
+	} else if (tamanho % comprimentoBarra === 0) {
+		qtdBarra = tamanho / comprimentoBarra;
 		return qtdBarra
 	} else {
-		const qtdBarra = Math.ceil(corrimao / comprimentoBarra);
+		qtdBarra = Math.ceil(tamanho / comprimentoBarra);
 		return qtdBarra;
 	}
 }
 
-export function calcularSobra(corrimao) {
-	//se unidade for divisivel por 3 e decimal igual 0
-	if (trataNumeros(corrimao).unidade % comprimentoBarra === 0 && trataNumeros(corrimao).decimal === 0.00) {
-		return 0
-	}
-	//se unidade for divisivel por 3 e decimal maior que 0
-	else if (trataNumeros(corrimao).unidade % comprimentoBarra === 0 && trataNumeros(corrimao).decimal !== 0.00) {
-		const decimal = `0.${trataNumeros(corrimao).decimal}`
-		const sobra = comprimentoBarra - decimal;
-		return sobra;
-	}
-	//se unidade nao for divisivel 3 e decimal for igual a 0
-	else if (trataNumeros(corrimao).unidade % comprimentoBarra !== 0 && trataNumeros(corrimao).decimal === 0.00) {
-		const sobra = comprimentoBarra - (trataNumeros(corrimao).unidade % comprimentoBarra);
-		return sobra;
-	}
-	//se unidade nao for divisivel 3 e decimal for maior que 0
-	else if (trataNumeros(corrimao).unidade % comprimentoBarra !== 0 && trataNumeros(corrimao).decimal !== 0.00) {
-		const decimal = trataNumeros(corrimao).decimal;
-		const unidade = trataNumeros(corrimao).unidade;
-		const sobra = (comprimentoBarra - (trataNumeros(corrimao).unidade % comprimentoBarra)) - Number(`0.${trataNumeros(corrimao).decimal}`);
-		return sobra;
+export function calculaSobra(tamanho) {
+	let sobra = 0;
+	
+	const tamanhoModBarra = Number(tamanho) % comprimentoBarra;//pega o tamanho passado e tira o modulo do comprimento da barra
+	const tamanhoConvertido = Number(tamanho)
+	if (Number.isInteger(tamanhoConvertido) === true) { //se o numero for inteiro
+		if (tamanhoModBarra === 0) {
+			return 0
+		} else {
+			sobra = comprimentoBarra - tamanhoModBarra
+			return sobra
+		}
+	} else  {//se o numero nao for inteiro
+		const inteiro = trataNumeros(tamanho).inteiro;//pega a parte inteira
+		const inteiroModBarra = inteiro % comprimentoBarra;//pega o inteiro passado e tira o modulo do comprimento da barra
+		const proxDivisor3 = inteiro + (comprimentoBarra - inteiroModBarra)
+		const metrosUsadosBarra = proxDivisor3 - tamanho;
+		sobra = metrosUsadosBarra
+		sobra = sobra.toFixed(2)
+		return sobra
 	}
 }
 
 export function calcularParalelas(corrimao, paralela) {
-	const barra = calcularBarras(corrimao);
-	const sobra = calcularSobra(corrimao);
-
-	const res = barra * paralela
+	
 }
+
