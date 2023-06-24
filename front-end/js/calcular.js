@@ -66,8 +66,49 @@ document.querySelector('#paralela').addEventListener('click', () => {
 
 document.querySelector("#fazendo-conta").addEventListener('click', () => {
 	const corrimao = document.querySelector("#metragem").value;
-	alert(`irá usar ${contaBarras(corrimao)} barras,\nE irá Sobrar ${contaSobra(corrimao)} metros`);
+	//alert(`irá usar ${contaBarras(corrimao)} barras,\nE irá Sobrar ${contaSobra(corrimao)} metros`);
 	//alert(`Paralelas serão: ${contaParalela(corrimao)}`)
+
+	const txtQtdBarra = `irá usar ${contaBarras(corrimao)} barras`
+
+	const txtSobraBarra = `irá sobrar ${contaSobra(corrimao)} mt / cm`
+
+	mudaTexto(document.querySelector('.resultado-qtd-barra'), txtQtdBarra)
+	if (Number(corrimao) % 3 !== 0) {
+		mudaTexto(document.querySelector('.resultado-sobra-barra'), txtSobraBarra)
+
+		document.querySelector('.resultado-sobra-barra').style.display = 'flex'
+	} else {
+		document.querySelector('.resultado-sobra-barra').style.display = 'none'
+	}
+
+	document.querySelector('.area-resultado').style.display = 'flex'
 })
 
+document.querySelector('.btn-ok').addEventListener('click', () => {
+	document.querySelector('.area-resultado').style.display = 'none';
+})
 
+//salvar na minha biblioteca de codigo
+function abreFecha(btn, el) {
+	let show = false
+	const elemento = el;
+	const displayElemento = el.style.display;
+	btn.addEventListener('click', () => {
+		if (show === false) {
+			elemento.style.display = 'none'
+			show = true
+
+		} else {
+			elemento.style.display = displayElemento;
+
+			console.log(displayElemento);
+			show = false
+		}
+	})
+}
+
+function mudaTexto(el, txt) {
+	el.innerHTML = txt
+
+}
