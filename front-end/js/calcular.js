@@ -3,6 +3,8 @@ import { calculaQtdBarra, calculaSobra } from './calcular/calculos.js';
 const contaBarras = calculaQtdBarra;
 const contaSobra = calculaSobra;
 
+const filaMetros = []
+
 async function atualizaLista() {
 	try {
 		const response = await fetch('http://localhost:3000/produtos');
@@ -66,8 +68,20 @@ document.querySelector('#paralela').addEventListener('click', () => {
 
 document.querySelector("#fazendo-conta").addEventListener('click', () => {
 	const corrimao = document.querySelector("#metragem").value;
-	//alert(`irá usar ${contaBarras(corrimao)} barras,\nE irá Sobrar ${contaSobra(corrimao)} metros`);
-	//alert(`Paralelas serão: ${contaParalela(corrimao)}`)
+
+	let c = 0
+	for (let x = 0; x < filaMetros.length; x++) {
+		c += Number(filaMetros[x])
+
+	}
+
+
+	alert(c)
+
+
+	if (Number(corrimao) > 0) {
+
+	}
 
 	const txtQtdBarra = `irá usar ${contaBarras(corrimao)} barras`
 
@@ -87,6 +101,17 @@ document.querySelector("#fazendo-conta").addEventListener('click', () => {
 
 document.querySelector('.btn-ok').addEventListener('click', () => {
 	document.querySelector('.area-resultado').style.display = 'none';
+})
+
+//add numeros nas divs 
+document.querySelector('.btn-add').addEventListener('click', () => {
+	const metros = document.querySelector("#metragem").value;
+
+	const div = document.createElement('div')
+	div.innerText = metros
+	div.classList.add('item-metros')
+	document.querySelector('.area-add-metros').appendChild(div)
+	filaMetros.push(metros)
 })
 
 //salvar na minha biblioteca de codigo

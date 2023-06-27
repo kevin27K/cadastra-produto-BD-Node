@@ -1,4 +1,4 @@
-const comprimentoBarra = 3;
+const comprimentoBarra = 6;
 
 export function trataNumeros(numero) {
 	const string = numero + "" //converte para String
@@ -32,7 +32,7 @@ export function calculaQtdBarra(tamanho) {
 
 	if (tamanho === 0) {
 		return console.error('IMPOSSIVEL FAZER A CONTA COM 0 (ZERO) METROS');
-	} else if (tamanho <= 3 && tamanho > 0 || tamanho === 1) {
+	} else if (tamanho <= comprimentoBarra && tamanho > 0 || tamanho === 1) {
 		return 1;
 	} else if (tamanho % comprimentoBarra === 0) {
 		qtdBarra = tamanho / comprimentoBarra;
@@ -45,7 +45,7 @@ export function calculaQtdBarra(tamanho) {
 
 export function calculaSobra(tamanho) {
 	let sobra = 0;
-	
+
 	const tamanhoModBarra = Number(tamanho) % comprimentoBarra;//pega o tamanho passado e tira o modulo do comprimento da barra
 	const tamanhoConvertido = Number(tamanho)
 	if (Number.isInteger(tamanhoConvertido) === true) { //se o numero for inteiro
@@ -55,7 +55,7 @@ export function calculaSobra(tamanho) {
 			sobra = comprimentoBarra - tamanhoModBarra
 			return sobra
 		}
-	} else  {//se o numero nao for inteiro
+	} else {//se o numero nao for inteiro
 		const inteiro = trataNumeros(tamanho).inteiro;//pega a parte inteira
 		const inteiroModBarra = inteiro % comprimentoBarra;//pega o inteiro passado e tira o modulo do comprimento da barra
 		const proxDivisor3 = inteiro + (comprimentoBarra - inteiroModBarra)
@@ -67,6 +67,6 @@ export function calculaSobra(tamanho) {
 }
 
 export function calcularParalelas(corrimao, paralela) {
-	
+
 }
 
